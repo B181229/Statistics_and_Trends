@@ -11,7 +11,7 @@ and ensure your code is PEP-8 compliant, including docstrings.
 Statistics and Trends Assignment
 Student Name: Sukesh Kumar Eddagiri
 Student ID: 25036788
-Dataset: data.csv
+Dataset: data.csv (StudentsPerformance data)
 """
 
 from corner import corner
