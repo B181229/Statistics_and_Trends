@@ -21,11 +21,10 @@ import pandas as pd
 import scipy.stats as ss
 import seaborn as sns
 
-
 def plot_relational_plot(df):
     #Creates and saves a Relational plot.
     fig, ax = plt.subplots()
-    sns.scatterplot(data=df, x=df.columns[0], y=df.columns[1], ax=ax)
+    sns.scatterplot(data=df, x=df.columns[6], y=df.columns[7],hue="gender", ax=ax)
 
     ax.set_title('Relational Plot')
     plt.tight_layout()
@@ -48,14 +47,15 @@ def plot_categorical_plot(df):
 
 
 def plot_statistical_plot(df):
-    #Creates and saves a Statistical distribution plot.
-    
-    fig, ax = plt.subplots()
-    # Histogram for first numerical column
-    numerical_col = df.select_dtypes(include=np.number).columns[0]
-    sns.histplot(df[numerical_col], kde=True, ax=ax)
+    #Creates and saves a Statistical plot.
+    #Correlation Heatmap
 
-    ax.set_title('Statistical Plot')
+    scores_cols = ["math score", "reading score", "writing score"]
+    cor = df[scores_cols].corr()
+
+    plt.figure()
+    sns.heatmap(cor, annot=True, cmap="coolwarm", fmt=".3f")
+    plt.title("Correlation Heatmap of Scores")
     plt.tight_layout()
     plt.savefig('statistical_plot.png')
     plt.close()
@@ -144,3 +144,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
